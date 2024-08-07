@@ -3,7 +3,7 @@ import axios from "axios";
 export const getAllPosts = async (searchKeyword = "", page = 1, limit = 10) => {
   try {
     const { data, headers } = await axios.get(
-      `https://gaketa-server.up.railway.app/api/posts?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}`
+      `https://gaketa-server-app.up.railway.app//api/posts?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}`
     );
     return { data, headers };
   } catch (error) {
@@ -15,7 +15,7 @@ export const getAllPosts = async (searchKeyword = "", page = 1, limit = 10) => {
 
 export const getSinglePost = async ({ slug }) => {
   try {
-    const { data } = await axios.get(`https://gaketa-server.up.railway.app/api/posts/${slug}`);
+    const { data } = await axios.get(`https://gaketa-server-app.up.railway.app//api/posts/${slug}`);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)
@@ -32,7 +32,7 @@ export const deletePost = async ({ slug, token }) => {
       },
     };
 
-    const { data } = await axios.delete(`https://gaketa-server.up.railway.app/api/posts/${slug}`, config);
+    const { data } = await axios.delete(`https://gaketa-server-app.up.railway.app//api/posts/${slug}`, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)
@@ -49,7 +49,7 @@ export const updatePost = async ({ updatedData, slug, token }) => {
       },
     };
 
-    const { data } = await axios.put(`https://gaketa-server.up.railway.app/api/posts/${slug}`, updatedData, config);
+    const { data } = await axios.put(`https://gaketa-server-app.up.railway.app//api/posts/${slug}`, updatedData, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)
@@ -66,7 +66,7 @@ export const createPost = async ({ token }) => {
       },
     };
 
-    const { data } = await axios.post(`https://gaketa-server.up.railway.app/api/posts`, {}, config);
+    const { data } = await axios.post(`https://gaketa-server-app.up.railway.app//api/posts`, {}, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)
