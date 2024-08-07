@@ -15,7 +15,7 @@ export const createNewComment = async ({
     };
 
     const { data } = await axios.post(
-      "https://gaketa-server.up.railway.app/api/comments",
+      "https://gaketa-server-app.up.railway.app/api/comments",
       {
         desc,
         slug,
@@ -41,7 +41,7 @@ export const updateComment = async ({ token, desc, check, commentId }) => {
     };
 
     const { data } = await axios.put(
-      `https://gaketa-server.up.railway.app/pi/comments/${commentId}`,
+      `https://gaketa-server-app.up.railway.app/pi/comments/${commentId}`,
       {
         desc,
         check,
@@ -64,7 +64,7 @@ export const deleteComment = async ({ token, commentId }) => {
       },
     };
 
-    const { data } = await axios.delete(`https://gaketa-server.up.railway.app/api/comments/${commentId}`, config);
+    const { data } = await axios.delete(`https://gaketa-server-app.up.railway.app/api/comments/${commentId}`, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)
@@ -87,7 +87,7 @@ export const getAllComments = async (
     };
 
     const { data, headers } = await axios.get(
-      `https://gaketa-server.up.railway.app/api/comments?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}`,
+      `https://gaketa-server-app.up.railway.app/api/comments?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}`,
       config
     );
     return { data, headers };
