@@ -10,7 +10,7 @@ const GaketaCard = ({ post, className }) => {
     <div
       className={`overflow-hidden rounded-xl bg-[#FFF] shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] ${className}`}
     >
-      <Link to={`/blog/${post.slug}`}>
+      <Link to={`/gaketa/${post.slug}`}>
         <img
           src={
             post.photo
@@ -22,7 +22,7 @@ const GaketaCard = ({ post, className }) => {
         />
       </Link>
       <div className="p-5">
-        <Link to={`/blog/${post.slug}`}>
+        <Link to={`/gaketa/${post.slug}`}>
           <h2 className="font-roboto text-xl font-bold text-dark-soft md:text-2xl lg:text-[28px]">
             {post.title}
           </h2>

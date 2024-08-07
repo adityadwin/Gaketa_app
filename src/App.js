@@ -22,8 +22,8 @@ function App() {
     <div className="App font-opensans">
       <Routes>
         <Route index path="/" element={<HomePage />} />
-        <Route path="/blog" element={<GaketaPage />} />
-        <Route path="/blog/:slug" element={<GaketaDetailPage />} />
+        <Route path="/gaketa" element={<GaketaPage />} />
+        <Route path="/gaketa/:slug" element={<GaketaDetailPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />

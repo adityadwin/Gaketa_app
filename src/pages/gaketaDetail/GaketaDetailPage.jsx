@@ -28,7 +28,7 @@ const ArticleDetailPage = () => {
     onSuccess: (data) => {
       setbreadCrumbsData([
         { name: "Home", link: "/" },
-        { name: "Gaketa title", link: `/blog/${data.slug}` },
+        { name: "Gaketa title", link: `/gaketa/${data.slug}` },
       ]);
       setBody(parseJsonToHtml(data?.body));
     },
@@ -65,7 +65,7 @@ const ArticleDetailPage = () => {
             <div className="mt-4 flex gap-2">
               {data?.categories.map((category) => (
                 <Link
-                  to={`/blog?category=${category.name}`}
+                  to={`/gaketa?category=${category.name}`}
                   className="inline-block font-roboto text-sm text-primary md:text-base"
                 >
                   {category.name}

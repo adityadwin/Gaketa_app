@@ -42,10 +42,10 @@ const Articles = () => {
         )}
       </div>
       <Link
-        to="/blog"
+        to="/faketa"
         className="mx-auto flex items-center gap-x-2 rounded-lg border-2 border-primary px-6 py-3 font-bold text-primary"
       >
-        <span>More articles</span>
+        <span>More</span>
         <FaArrowRight className="h-3 w-3" />
       </Link>
     </section>

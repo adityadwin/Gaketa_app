@@ -15,7 +15,7 @@ const Hero = () => {
           every creation is a unique dance of imagination and craftsmanship.
         </p>
         <div className="mt-10">
-          <Link to="/blog">
+          <Link to="/gaketa">
             <button className="h-14 w-40 rounded-full border-2 border-[#b9503e] text-lg font-bold text-[#b9503e] transition duration-150 hover:bg-[#b9503e] hover:text-slate-200 lg:text-xl">
               Explore more
             </button>
