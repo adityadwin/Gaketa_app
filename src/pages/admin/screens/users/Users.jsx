@@ -1,5 +1,5 @@
 import React from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useDataTable } from "../../../../hooks/useDataTable";
 import {
@@ -9,15 +9,11 @@ import {
 } from "../../../../services/index/users";
 import DataTable from "../../components/DataTable";
 import { images, stables } from "../../../../constants";
-import { useSelector } from "react-redux"; // Assuming you use Redux for state management
+import { useSelector } from "react-redux";
 
 const Users = () => {
-  const userState = useSelector((state) => state.user); // Assuming you have user state in Redux
-
-  // Check if user is not superadmin, return early or redirect
-  if (userState.userInfo.role !== "superadmin") {
-    return <div>You are not authorized to view this page.</div>; // You can also redirect to a different page
-  }
+  const userState = useSelector((state) => state.user);
+  const queryClient = useQueryClient();
 
   const {
     currentPage,
@@ -26,12 +22,10 @@ const Users = () => {
     isLoading,
     isFetching,
     isLoadingDeleteData,
-    queryClient,
     searchKeywordHandler,
     submitSearchKeywordHandler,
     deleteDataHandler,
     setCurrentPage,
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useDataTable({
     dataQueryFn: () =>
       getAllUsers(userState.userInfo.token, searchKeyword, currentPage),
@@ -46,23 +40,23 @@ const Users = () => {
   });
 
   const { mutate: mutateUpdateUser, isLoading: isLoadingUpdateUser } =
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     useMutation({
       mutationFn: ({ role, userId }) => {
+        console.log("Updating role to:", role, "for user:", userId);
         return updateProfile({
           token: userState.userInfo.token,
-          userData: { role }, // Update userData with role
+          userData: { role },
           userId,
         });
       },
-      onSuccess: (data) => {
-        // Invalidate queries to refetch updated user data
+      onSuccess: () => {
+        console.log("User role updated successfully");
         queryClient.invalidateQueries(["users"]);
         toast.success("User role updated successfully");
       },
       onError: (error) => {
-        toast.error(`Error updating user role: ${error.message}`);
         console.error("Error updating user role:", error);
+        toast.error(`Error updating user role: ${error.message}`);
       },
     });
 
@@ -70,9 +64,16 @@ const Users = () => {
     const newRole = event.target.value;
 
     if (window.confirm("Do you want to change the role of this user?")) {
+      console.log("Role change confirmed:", newRole, "for user:", userId);
       mutateUpdateUser({ role: newRole, userId });
+    } else {
+      console.log("Role change canceled.");
     }
   };
+
+  if (userState.userInfo.role !== "superadmin") {
+    return <div>You are not authorized to view this page.</div>;
+  }
 
   return (
     <DataTable
@@ -86,7 +87,7 @@ const Users = () => {
         "Name",
         "Email",
         "Created At",
-        "Is Verified",
+        "is Verified",
         "Role",
         "",
       ]}
