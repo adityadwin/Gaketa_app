@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useDataTable } from "../../../../hooks/useDataTable";
@@ -31,7 +31,7 @@ const Users = () => {
     submitSearchKeywordHandler,
     deleteDataHandler,
     setCurrentPage,
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useDataTable({
     dataQueryFn: () =>
       getAllUsers(userState.userInfo.token, searchKeyword, currentPage),
@@ -56,12 +56,13 @@ const Users = () => {
         });
       },
       onSuccess: (data) => {
+        // Invalidate queries to refetch updated user data
         queryClient.invalidateQueries(["users"]);
-        toast.success("User is updated");
+        toast.success("User role updated successfully");
       },
       onError: (error) => {
-        toast.error(error.message);
-        console.log(error);
+        toast.error(`Error updating user role: ${error.message}`);
+        console.error("Error updating user role:", error);
       },
     });
 
@@ -85,7 +86,7 @@ const Users = () => {
         "Name",
         "Email",
         "Created At",
-        "is Verified",
+        "Is Verified",
         "Role",
         "",
       ]}
