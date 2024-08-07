@@ -37,7 +37,7 @@ export const getUserProfile = async ({ token }) => {
       },
     };
 
-    const { data } = await axios.get("https://gaketa-server.up.railway.app/pi/users/profile", config);
+    const { data } = await axios.get("https://gaketa-server.up.railway.app/api/users/profile", config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)
