@@ -41,7 +41,7 @@ export const updateComment = async ({ token, desc, check, commentId }) => {
     };
 
     const { data } = await axios.put(
-      `https://gaketa-server-app.up.railway.app/pi/comments/${commentId}`,
+      `https://gaketa-server-app.up.railway.app/api/comments/${commentId}`,
       {
         desc,
         check,
