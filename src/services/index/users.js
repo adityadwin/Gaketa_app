@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const signup = async ({ name, email, password }) => {
   try {
-    const { data } = await axios.post("https://gaketa-server.up.railway.app/api/users/register", {
+    const { data } = await axios.post("https://gaketa-server-app.up.railway.app//api/users/register", {
       name,
       email,
       password,
@@ -17,7 +17,7 @@ export const signup = async ({ name, email, password }) => {
 
 export const login = async ({ email, password }) => {
   try {
-    const { data } = await axios.post("https://gaketa-server.up.railway.app/api/users/login", {
+    const { data } = await axios.post("https://gaketa-server-app.up.railway.app//api/users/login", {
       email,
       password,
     });
@@ -37,7 +37,7 @@ export const getUserProfile = async ({ token }) => {
       },
     };
 
-    const { data } = await axios.get("https://gaketa-server.up.railway.app/api/users/profile", config);
+    const { data } = await axios.get("https://gaketa-server-app.up.railway.app//api/users/profile", config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)
@@ -55,7 +55,7 @@ export const updateProfile = async ({ token, userData, userId }) => {
     };
 
     const { data } = await axios.put(
-      `/https://gaketa-server.up.railway.app/api/users/updateProfile/${userId}`,
+      `/https://gaketa-server-app.up.railway.app//api/users/updateProfile/${userId}`,
       userData,
       config
     );
@@ -77,7 +77,7 @@ export const updateProfilePicture = async ({ token, formData }) => {
     };
 
     const { data } = await axios.put(
-      "https://gaketa-server.up.railway.app/api/users/updateProfilePicture",
+      "https://gaketa-server-app.up.railway.app//api/users/updateProfilePicture",
       formData,
       config
     );
@@ -103,7 +103,7 @@ export const getAllUsers = async (
     };
 
     const { data, headers } = await axios.get(
-      `https://gaketa-server.up.railway.app/api/users?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}`,
+      `https://gaketa-server-app.up.railway.app//api/users?searchKeyword=${searchKeyword}&page=${page}&limit=${limit}`,
       config
     );
     return { data, headers };
@@ -122,7 +122,7 @@ export const deleteUser = async ({ slug, token }) => {
       },
     };
 
-    const { data } = await axios.delete(`https://gaketa-server.up.railway.app/api/users/${slug}`, config);
+    const { data } = await axios.delete(`https://gaketa-server-app.up.railway.app//api/users/${slug}`, config);
     return data;
   } catch (error) {
     if (error.response && error.response.data.message)
